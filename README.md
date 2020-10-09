@@ -5,5 +5,5 @@ This is the repository for PatrIoT instantiations for some major programmable Io
 #### Directories:
 
 * `patriot` contains the instrumentor and policies for runtime monitoring as well as the simulation testbeds.
-* `patriot-rdlm` contains the https-based lock management server that handles synchronization for the SmartThings platform in our testbed. 
+* `patriot-rdlm` contains the https-based lock management server that handles synchronization for the SmartThings platform in our testbed. `patriot-rdlm` is adapted from [here](https://github.com/thefab/restful-distributed-lock-manager)
 
