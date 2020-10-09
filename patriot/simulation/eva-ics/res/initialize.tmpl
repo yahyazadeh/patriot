@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+import pickle
+
+#PIK = //@{PICKLED_DATA_PATH}
+PIK = '/home/sec/Projects/iiot/eva-3.2.4/xc/lm/persist.dat'
+
+//@{PICKLED_DATA_SECTION}
+
+with open(PIK, 'wb') as f:
+    pickle.dump(data, f)

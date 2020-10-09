@@ -1,0 +1,22 @@
+smart_things:
+    policy_manager_appname: PolicyManager
+    policy_manager_template_file_path: simulation/smartthings/res/policy_manager.tmpl
+    preprocessed_smartapps_folder: simulation/smartthings/prep_smartapps
+    author_name: Daniel Johnson
+    author_namespace: dan1johnson
+    rdlm_uri: https://ramo.cs.uiowa.edu:8443
+    rdlm_http_auth:
+        username: admin
+        password: P@Tr!0t
+    rdlm_lock_path: /locks/PatriotLock
+    rdlm_lock_lifetime: 50
+    actions_list: simulation/smartthings/res/actions.csv
+    instrumentation_log_path: simulation/smartthings/res/log.txt
+openhab:
+    policy_manager_template_file_path: simulation/openhab/res/policy_manager.tmpl
+eva_ics:
+    initialize_template_file_path: simulation/eva-ics/res/initialize.tmpl
+    initialize_generated_file_name: initialize.py
+    pickled_data_path: persist.dat
+    pdp_template_file_path: simulation/eva-ics/res/common.tmpl
+    pdp_generated_file_name: common.py

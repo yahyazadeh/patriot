@@ -1,0 +1,7 @@
+set('g1/processed', value=1)
+increment('g1/num_successful_batch')
+sleep(1)
+system('eva uc update sensor:g1/ws02 -s 1 -v 0')
+decrement('g1/en_num_pallets_on_cb')
+system('eva uc update sensor:g1/ps02 -s 1 -v 0')
+set('g1/processed', value=0)

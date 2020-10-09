@@ -1,0 +1,84 @@
+import pickle
+import copy
+#import time
+from datetime import datetime
+
+#PIK = //@{PICKLED_DATA_PATH}
+PIK = '/home/sec/Projects/iiot/eva-3.2.4/xc/lm/persist.dat'
+
+//@{ENCODED_POLICIES_SECTION}
+
+def pdp(action_device, action_command, action_command_arg):
+    # _0: current macro ID
+    automation_unit = _0
+
+    # _source: item generated the event.
+    evt = _source.item_id
+
+    data = {}
+    with open(PIK, 'rb') as f:
+        data = pickle.load(f)
+
+    //@{PDP_BODY_PERMISSION_SECTION}
+
+    with open(PIK, 'wb') as f:
+        pickle.dump(data, f)
+
+    return permission
+
+def since(p, q, tss, i, l, r, current_time, idx, bounded):
+    if q:
+        tss[i]['q']['i'] = idx
+        tss[i]['q']['tau'] = current_time
+
+    if p:
+        if not tss[i]['p']:
+            tss[i]['p'] = idx
+
+    else:
+        tss[i]['p'] =  None
+
+    tss_q = tss[i]['q']
+    tss_p = tss[i]['p']
+    q_tau = tss_q['tau']
+    q_i = tss_q['i']
+    if tss_q and tss_p and q_tau:
+        if bounded:
+            period = time_diff_sec(current_time, q_tau)
+            return ((q_i <= idx) and (tss_p <= q_i + 1) and (period >= l and period <= r))
+        else:
+            return ((q_i <= idx) and (tss_p <= q_i + 1))
+
+    else:
+        return False
+
+
+def once(p, tss, i, l, r, current_time, idx, bounded):
+    return since(true, p, tss, i, l, r, current_time, idx, bounded)
+
+def lastly(p, prv, tss, i, l, r, current_time, bounded):
+    y = False
+    if prv:
+        if bounded:
+            period = time_diff_sec(current_time, tss[i]['tau'])
+            y = period >= l and period <= r
+
+        else:
+            y = True
+
+    if p:
+        tss[i]['tau'] = current_time
+
+    return y
+
+
+def implies(p, q):
+    return (not p) or q
+
+
+def time_diff_sec(t2, t1):
+    if t2 < t1:
+        return -1
+
+    else:
+        return t2 - t1
